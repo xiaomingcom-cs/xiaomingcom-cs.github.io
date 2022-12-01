@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"xiaomingcom-cs.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Xiaoming&#39;s Blog">
-<meta property="og:url" content="https://xiaomingcom-cs.github.io/archives/index.html">
+  <meta name="description" content="相关名词介绍  ECMA 欧洲计算机制造商协会 制定标准的组织 ECMA-262是其中(标准)的一个,即ECMAscript ES6版本变动内容最多，具有里程碑意义，加入很多新语法特性，编程更加简单高效 ECMA-262只是纸面标准，实践当中需要每个浏览器厂商对标准进行实现，因此有兼容性的问题  let 变量不能重复声明(var可以)12let a&#x3D;1let a&#x3D;2&#x2F;&#x2F;出错 块级作用域 只在代码块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6新语法">
+<meta property="og:url" content="https://xiaomingcom-cs.github.io/2022/12/01/es6/index.html">
 <meta property="og:site_name" content="Xiaoming&#39;s Blog">
+<meta property="og:description" content="相关名词介绍  ECMA 欧洲计算机制造商协会 制定标准的组织 ECMA-262是其中(标准)的一个,即ECMAscript ES6版本变动内容最多，具有里程碑意义，加入很多新语法特性，编程更加简单高效 ECMA-262只是纸面标准，实践当中需要每个浏览器厂商对标准进行实现，因此有兼容性的问题  let 变量不能重复声明(var可以)12let a&#x3D;1let a&#x3D;2&#x2F;&#x2F;出错 块级作用域 只在代码块">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-01T07:30:20.000Z">
+<meta property="article:modified_time" content="2022-12-01T08:59:55.184Z">
 <meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="js ES6">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://xiaomingcom-cs.github.io/archives/">
+<link rel="canonical" href="https://xiaomingcom-cs.github.io/2022/12/01/es6/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | Xiaoming's Blog</title>
+  <title>ES6新语法 | Xiaoming's Blog</title>
   
 
 
@@ -186,130 +191,124 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 5 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xiaomingcom-cs.github.io/2022/12/01/es6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wuliuqi.jpg">
+      <meta itemprop="name" content="Xiaoming">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoming's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6新语法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-12-01 15:30:20 / Modified: 16:59:55" itemprop="dateCreated datePublished" datetime="2022-12-01T15:30:20+08:00">2022-12-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>560</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-12-01T15:30:20+08:00"
-              content="2022-12-01">
-          12-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/12/01/es6/" itemprop="url">
-            <span itemprop="name">ES6新语法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-12-01T12:46:05+08:00"
-              content="2022-12-01">
-          12-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/12/01/js%E9%AB%98%E7%BA%A7/" itemprop="url">
-            <span itemprop="name">js闭包</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-29T12:42:25+08:00"
-              content="2022-11-29">
-          11-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/29/react-project/" itemprop="url">
-            <span itemprop="name">reactProject</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-07-11T22:54:00+08:00"
-              content="2022-07-11">
-          07-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/07/11/summer-holiday/" itemprop="url">
-            <span itemprop="name">summer holiday</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-07-10T16:50:08+08:00"
-              content="2022-07-10">
-          07-10
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/07/10/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <p>相关名词介绍</p>
+<ul>
+<li>ECMA 欧洲计算机制造商协会 制定标准的组织</li>
+<li>ECMA-262是其中(标准)的一个,即ECMAscript</li>
+<li>ES6版本变动内容最多，具有里程碑意义，加入很多新语法特性，编程更加简单高效</li>
+<li>ECMA-262只是纸面标准，实践当中需要每个浏览器厂商对标准进行实现，因此有兼容性的问题</li>
+</ul>
+<h4 id="let"><a href="#let" class="headerlink" title="let"></a>let</h4><ul>
+<li>变量不能重复声明(var可以)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a=<span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> a=<span class="number">2</span><span class="comment">//出错</span></span><br></pre></td></tr></table></figure></li>
+<li>块级作用域 只在代码块有效</li>
+<li>不存在变量提升<ul>
+<li>变量提升：变量可以在声明之前进行初始化和使用。</li>
+<li>只会提升声明，不会提升其初始化</li>
+</ul>
+</li>
+<li>不影响作用域链</li>
+<li>经典案例:循环绑定事件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;items.<span class="property">length</span>;i++)&#123;</span><br><span class="line">  items[i].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    items[i].<span class="property">style</span>.<span class="property">background</span> = <span class="string">&#x27;pink&#x27;</span><span class="comment">//绑定完事件后i=3,当点击触发click事件时该语句作用域内找不到i,向上级找，在全局window中找到了i，但此时i是3，出错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//解决方法：1.var 改成let,2.this.style.background</span></span><br></pre></td></tr></table></figure>
+<h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4></li>
+<li>一定要赋初始值</li>
+<li>一般常量名是用大写</li>
+<li>常量值不能修改</li>
+<li>块级作用域</li>
+<li>对于数组和对象的元素修改，不算做对常量的修改(常量指向的引用地址没有改变)</li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/js-ES6/" rel="tag"># js ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/01/js%E9%AB%98%E7%BA%A7/" rel="prev" title="js闭包">
+      <i class="fa fa-chevron-left"></i> js闭包
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -362,6 +361,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#let"><span class="nav-number">1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#const"><span class="nav-number">2.</span> <span class="nav-text">const</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
