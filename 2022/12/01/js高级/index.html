@@ -22,16 +22,16 @@
 
   <meta name="description" content="闭包 如何产生闭包当一个嵌套的内部子函数引用了嵌套的外部父函数的变量(函数)时，就产生了闭包 闭包到底是什么包含被引用变量(函数)的对象(闭包存在于嵌套的内部函数中) 产生闭包的条件 函数嵌套+内部函数引用了外部函数的数据(变量&#x2F;函数)+执行内部函数定义(可以不调用内部函数)1234567function fn1()&amp;#123;  var a&#x3D;2&#x2F;&#x2F;调用fn1执行到此处时已经产生了闭包(函数提升)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js闭包">
+<meta property="og:title" content="JS闭包">
 <meta property="og:url" content="https://xiaomingcom-cs.github.io/2022/12/01/js%E9%AB%98%E7%BA%A7/index.html">
 <meta property="og:site_name" content="Xiaoming&#39;s Blog">
 <meta property="og:description" content="闭包 如何产生闭包当一个嵌套的内部子函数引用了嵌套的外部父函数的变量(函数)时，就产生了闭包 闭包到底是什么包含被引用变量(函数)的对象(闭包存在于嵌套的内部函数中) 产生闭包的条件 函数嵌套+内部函数引用了外部函数的数据(变量&#x2F;函数)+执行内部函数定义(可以不调用内部函数)1234567function fn1()&amp;#123;  var a&#x3D;2&#x2F;&#x2F;调用fn1执行到此处时已经产生了闭包(函数提升)">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://xiaomingcom-cs.github.io/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png">
 <meta property="article:published_time" content="2022-12-01T04:46:05.000Z">
-<meta property="article:modified_time" content="2022-12-01T05:32:42.531Z">
+<meta property="article:modified_time" content="2022-12-02T06:39:53.413Z">
 <meta property="article:author" content="Xiaoming">
-<meta property="article:tag" content="js 闭包">
+<meta property="article:tag" content="JS 闭包">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://xiaomingcom-cs.github.io/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png">
 
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>js闭包 | Xiaoming's Blog</title>
+  <title>JS闭包 | Xiaoming's Blog</title>
   
 
 
@@ -213,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          js闭包
+          JS闭包
         </h1>
 
         <div class="post-meta">
@@ -222,10 +222,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-12-01 12:46:05 / Modified: 13:32:42" itemprop="dateCreated datePublished" datetime="2022-12-01T12:46:05+08:00">2022-12-01</time>
+              <time title="Created: 2022-12-01 12:46:05" itemprop="dateCreated datePublished" datetime="2022-12-01T12:46:05+08:00">2022-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-02 14:39:53" itemprop="dateModified" datetime="2022-12-02T14:39:53+08:00">2022-12-02</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -240,14 +246,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>739</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -263,10 +269,32 @@
 <li>如何产生闭包<br>当一个嵌套的内部子函数引用了嵌套的外部父函数的变量(函数)时，就产生了闭包</li>
 <li>闭包到底是什么<br>包含被引用变量(函数)的对象(闭包存在于嵌套的内部函数中)</li>
 <li>产生闭包的条件 函数嵌套+内部函数引用了外部函数的数据(变量/函数)+执行内部函数定义(可以不调用内部函数)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a=<span class="number">2</span><span class="comment">//调用fn1执行到此处时已经产生了闭包(函数提升) 对应此处的执行上下文如下图</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">  &#125;<span class="comment">//如果采用var fn2 = function()的方式定义函数，则只有在执行到这里时才会产生闭包，var a=2那里函数对象还没创建呢，是undefined,也就不存在闭包了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn1</span>()</span><br></pre></td></tr></table></figure>
-<img src="/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png"><br>常见的闭包</li>
-<li>将函数作为另一个函数的返回值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a=<span class="number">2</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    a++</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fn2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f=<span class="title function_">fn1</span>()<span class="comment">//正常情况下a作为函数局部变量fn1调用结束就死亡，但是由于闭包没有死</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//3</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//4  只产生了一个内部函数对象(执行外部函数的时候才会产生内部函数对象,跟内部函数执行几次无关)，因此只有一个闭包</span></span><br></pre></td></tr></table></figure></li>
-<li>将函数作为实参传递给另一个函数调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">showDelay</span>(<span class="params">msg,time</span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(msg)</span><br><span class="line">  &#125;,time)<span class="comment">//回调函数是内部函数，showDelay是外部函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">showDelay</span>(<span class="string">&quot;xiaoming&quot;</span>,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure></li>
+<img src="/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png"><span id="more"></span>
+<h3 id="常见的闭包"><a href="#常见的闭包" class="headerlink" title="常见的闭包"></a>常见的闭包</h3></li>
+<li>将函数作为另一个函数的返回值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a=<span class="number">2</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    a++</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fn2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f=<span class="title function_">fn1</span>()<span class="comment">//正常情况下a作为函数局部变量fn1调用结束就死亡，但是由于闭包没有死</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//3</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//4  只产生了一个内部函数对象(执行外部函数的时候才会产生内部函数对象,跟内部函数执行几次无关)，因此只有一个闭包</span></span><br><span class="line">f=<span class="literal">null</span><span class="comment">//闭包死亡(包含闭包的函数对象成为垃圾对象)</span></span><br></pre></td></tr></table></figure></li>
+<li>将函数作为实参传递给另一个函数调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">showDelay</span>(<span class="params">msg,time</span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(msg)</span><br><span class="line">  &#125;,time)<span class="comment">//回调函数是内部函数，showDelay是外部函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">showDelay</span>(<span class="string">&quot;xiaoming&quot;</span>,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3></li>
+<li>使得内部函数的变量在函数执行完后，仍然存活在内存中(延长了局部变量的生命周期)</li>
+<li>使函数外部可以操作(读写)到函数内部的数据(变量/函数)</li>
 </ul>
+<p>作用域作用：隔离变量(外部看不到内部变量，但内部可以看到外部(作用域链))</p>
+<h3 id="闭包的生命周期"><a href="#闭包的生命周期" class="headerlink" title="闭包的生命周期"></a>闭包的生命周期</h3><ul>
+<li>产生：在嵌套的内部函数定义执行完就产生了</li>
+<li>死亡：在嵌套的内部函数成为垃圾对象时</li>
+</ul>
+<p>数据放到对象中不是私有的，对象的属性是直接可见的，而函数可以产生块级作用域，产生私有变量(对象不行)</p>
+<h3 id="闭包应用"><a href="#闭包应用" class="headerlink" title="闭包应用"></a>闭包应用</h3><ul>
+<li>定义JS模块<ul>
+<li>具有特定功能的JS文件</li>
+<li>将所有的数据和功能封装在一个函数内部(私有的)</li>
+<li>只向外暴露一个包含n个方法的对象或者函数</li>
+<li>模块使用者只需要通过模块暴露的对象调用方法实现相应功能</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;module1.js&gt;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">module1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> data=<span class="number">1</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">increase</span>(<span class="params"></span>)&#123;</span><br><span class="line">    data++</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">lag</span>(data)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">decrease</span>(<span class="params"></span>)&#123;</span><br><span class="line">    data--</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span>&#123;</span><br><span class="line">    <span class="attr">increase</span>:increase,</span><br><span class="line">    <span class="attr">decrease</span>:decrease</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//test1.js</span></span><br><span class="line"><span class="keyword">var</span> <span class="variable language_">module</span> = <span class="title function_">module1</span>()</span><br><span class="line"><span class="variable language_">module</span>.<span class="title function_">increase</span>()</span><br><span class="line"><span class="variable language_">module</span>.<span class="title function_">decrease</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;module2.js&gt;</span></span><br><span class="line">(<span class="keyword">function</span> (<span class="params"><span class="variable language_">window</span></span>)&#123;<span class="comment">//匿名函数</span></span><br><span class="line">  <span class="keyword">var</span> data=<span class="number">1</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">increase</span>(<span class="params"></span>)&#123;</span><br><span class="line">    data++</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">lag</span>(data)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">decrease</span>(<span class="params"></span>)&#123;</span><br><span class="line">    data--</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="variable language_">window</span>.<span class="property">module2</span> = &#123;</span><br><span class="line">    <span class="attr">increase</span>:increase,</span><br><span class="line">    <span class="attr">decrease</span>:decrease</span><br><span class="line">  &#125;<span class="comment">//不传的话由于作用域链可以找到window</span></span><br><span class="line">&#125;)(<span class="variable language_">window</span>)<span class="comment">//window可传可不传(但是为了代码压缩的方便加上(若不加代码压缩将window替换成字母则w.module不会加到全局window上))</span></span><br><span class="line"><span class="comment">//test2.js</span></span><br><span class="line">module2.<span class="title function_">increase</span>()</span><br><span class="line">module2.<span class="title function_">decrease</span>()</span><br></pre></td></tr></table></figure>
+<p>第一种方式需要先执行函数才能调用，第二种方式直接引入js文件后就全局可见</p>
 
     </div>
 
@@ -276,7 +304,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/js-%E9%97%AD%E5%8C%85/" rel="tag"># js 闭包</a>
+              <a href="/tags/JS-%E9%97%AD%E5%8C%85/" rel="tag"># JS 闭包</a>
           </div>
 
         
@@ -350,7 +378,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E9%97%AD%E5%8C%85"><span class="nav-number">2.</span> <span class="nav-text">常见的闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">闭包的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">4.</span> <span class="nav-text">闭包的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AD%E5%8C%85%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">闭包应用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -366,14 +394,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -392,7 +420,7 @@
         <a href="https://blog.csdn.net/weixin_51441462?spm=1000.2115.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_51441462?spm&#x3D;1000.2115.3001.5343" rel="noopener" target="_blank"><i class="fa fa-copyright fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://space.bilibili.com/694750216?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;694750216?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fa fa-video fa-fw"></i></a>
+        <a href="https://space.bilibili.com/694750216" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;694750216" rel="noopener" target="_blank"><i class="fa fa-video fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="https://m.weibo.cn/profile/7481368205" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;profile&#x2F;7481368205" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
@@ -430,13 +458,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">4k</span>
+    <span title="Symbols count total">5k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3 mins.</span>
+    <span title="Reading time total">5 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>

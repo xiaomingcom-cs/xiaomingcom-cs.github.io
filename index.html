@@ -192,6 +192,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xiaomingcom-cs.github.io/2022/12/01/Git%E5%B7%A5%E4%BD%9C%E6%B5%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wuliuqi.jpg">
+      <meta itemprop="name" content="Xiaoming">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoming's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/01/Git%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="post-title-link" itemprop="url">Git工作流</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-12-01 22:07:50" itemprop="dateCreated datePublished" datetime="2022-12-01T22:07:50+08:00">2022-12-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-02 21:08:03" itemprop="dateModified" datetime="2022-12-02T21:08:03+08:00">2022-12-02</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>847</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/2022/12/01/Git%E5%B7%A5%E4%BD%9C%E6%B5%81/git_flow.png"></p>
+<h3 id="git基本命令"><a href="#git基本命令" class="headerlink" title="git基本命令"></a><strong>git基本命令</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">* git config --global user.name &quot;&quot;</span><br><span class="line">* git config --global user.email ...</span><br><span class="line">* git status查看当前工作流状态</span><br><span class="line">* git log查看提交信息</span><br><span class="line">* git commit -a -m commit_name(-a执行git add) 直接从工作区跳到本地版本库</span><br><span class="line">为当前仓库新增文件，但是该文件还不能确定是否需要，可以在主分支中创建新分支</span><br><span class="line">* git branch branch_name 创建分支</span><br><span class="line">* git checkout branch_name 切换分支</span><br><span class="line">* git checkout -b 创建并切换分支</span><br><span class="line">* git branch -d branch_name 删除分支(不会立即删除，因为没有合并分支，非常确定要删除的时候可以使用 -D)</span><br><span class="line">* git merge branch_name(将分支合并到主分支)</span><br><span class="line">* git remote -v 查看本地仓库和哪些远程仓库有联系(默认用origin表示远程仓库的名字)</span><br><span class="line">* 使用github destop push速度更快</span><br></pre></td></tr></table></figure>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a><strong>Github</strong></h3><ul>
+<li>PR  是一种通知机制。你修改了他人的代码，将你的修改通知原来的作者，希望他合并你的修改，这就是 Pull Request</li>
+<li>actions 将持续集成过程变成了一个 actions 的组合</li>
+</ul>
+<h3 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a><strong>GitLab</strong></h3><ul>
+<li>GitLab有完善的管理界面和权限控制，一般用于在企业、学校等内部网络搭建Git私服。</li>
+<li>从代码的私有性上来看，GitLab 是一个更好的选择。但是对于开源项目而言，GitHub 依然是代码托管的首选。</li>
+</ul>
+<h3 id="GitBook"><a href="#GitBook" class="headerlink" title="GitBook"></a><strong>GitBook</strong></h3><p>(GitBook) 是一个使用 Git 和 Markdown 来构建书籍的工具。它可以将你的书输出很多格式：PDF，ePub，mobi，或者输出为静态网页。</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html</a><br><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/">https://learngitbranching.js.org/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://xiaomingcom-cs.github.io/2022/12/01/es6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -302,7 +392,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/12/01/js%E9%AB%98%E7%BA%A7/" class="post-title-link" itemprop="url">js闭包</a>
+            <a href="/2022/12/01/js%E9%AB%98%E7%BA%A7/" class="post-title-link" itemprop="url">JS闭包</a>
         </h2>
 
         <div class="post-meta">
@@ -311,10 +401,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-12-01 12:46:05 / Modified: 13:32:42" itemprop="dateCreated datePublished" datetime="2022-12-01T12:46:05+08:00">2022-12-01</time>
+              <time title="Created: 2022-12-01 12:46:05" itemprop="dateCreated datePublished" datetime="2022-12-01T12:46:05+08:00">2022-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-12-02 14:39:53" itemprop="dateModified" datetime="2022-12-02T14:39:53+08:00">2022-12-02</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -322,14 +418,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>739</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
+              <span>2 mins.</span>
             </span>
 
         </div>
@@ -345,11 +441,15 @@
 <li>如何产生闭包<br>当一个嵌套的内部子函数引用了嵌套的外部父函数的变量(函数)时，就产生了闭包</li>
 <li>闭包到底是什么<br>包含被引用变量(函数)的对象(闭包存在于嵌套的内部函数中)</li>
 <li>产生闭包的条件 函数嵌套+内部函数引用了外部函数的数据(变量/函数)+执行内部函数定义(可以不调用内部函数)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a=<span class="number">2</span><span class="comment">//调用fn1执行到此处时已经产生了闭包(函数提升) 对应此处的执行上下文如下图</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">  &#125;<span class="comment">//如果采用var fn2 = function()的方式定义函数，则只有在执行到这里时才会产生闭包，var a=2那里函数对象还没创建呢，是undefined,也就不存在闭包了</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fn1</span>()</span><br></pre></td></tr></table></figure>
-<img src="/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png"><br>常见的闭包</li>
-<li>将函数作为另一个函数的返回值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn1</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> a=<span class="number">2</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">fn2</span>(<span class="params"></span>)&#123;</span><br><span class="line">    a++</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> fn2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f=<span class="title function_">fn1</span>()<span class="comment">//正常情况下a作为函数局部变量fn1调用结束就死亡，但是由于闭包没有死</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//3</span></span><br><span class="line"><span class="title function_">f</span>()<span class="comment">//4  只产生了一个内部函数对象(执行外部函数的时候才会产生内部函数对象,跟内部函数执行几次无关)，因此只有一个闭包</span></span><br></pre></td></tr></table></figure></li>
-<li>将函数作为实参传递给另一个函数调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">showDelay</span>(<span class="params">msg,time</span>)&#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(msg)</span><br><span class="line">  &#125;,time)<span class="comment">//回调函数是内部函数，showDelay是外部函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">showDelay</span>(<span class="string">&quot;xiaoming&quot;</span>,<span class="number">2000</span>)</span><br></pre></td></tr></table></figure></li>
-</ul>
-
+<img src="/2022/12/01/js%E9%AB%98%E7%BA%A7/closure.png"></li></ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/01/js%E9%AB%98%E7%BA%A7/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -695,14 +795,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -721,7 +821,7 @@
         <a href="https://blog.csdn.net/weixin_51441462?spm=1000.2115.3001.5343" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_51441462?spm&#x3D;1000.2115.3001.5343" rel="noopener" target="_blank"><i class="fa fa-copyright fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://space.bilibili.com/694750216?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;694750216?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fa fa-video fa-fw"></i></a>
+        <a href="https://space.bilibili.com/694750216" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;694750216" rel="noopener" target="_blank"><i class="fa fa-video fa-fw"></i></a>
       </span>
       <span class="links-of-author-item">
         <a href="https://m.weibo.cn/profile/7481368205" title="Weibo → https:&#x2F;&#x2F;m.weibo.cn&#x2F;profile&#x2F;7481368205" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
@@ -759,13 +859,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">Symbols count total: </span>
-    <span title="Symbols count total">4k</span>
+    <span title="Symbols count total">5k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">Reading time total &asymp;</span>
-    <span title="Reading time total">3 mins.</span>
+    <span title="Reading time total">5 mins.</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
