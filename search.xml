@@ -19,13 +19,28 @@
 </ul>
 </li>
 <li>不影响作用域链</li>
-<li>经典案例:循环绑定事件<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;items.<span class="property">length</span>;i++)&#123;</span><br><span class="line">  items[i].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    items[i].<span class="property">style</span>.<span class="property">background</span> = <span class="string">&#x27;pink&#x27;</span><span class="comment">//绑定完事件后i=3,当点击触发click事件时该语句作用域内找不到i,向上级找，在全局window中找到了i，但此时i是3，出错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//解决方法：1.var 改成let,2.this.style.background</span></span><br></pre></td></tr></table></figure>
-<h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4></li>
+<li>经典案例:循环绑定事件<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">1</span>;i&lt;items.<span class="property">length</span>;i++)&#123;</span><br><span class="line">  items[i].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    items[i].<span class="property">style</span>.<span class="property">background</span> = <span class="string">&#x27;pink&#x27;</span><span class="comment">//绑定完事件后i=3,当点击触发click事件时该语句作用域内找不到i,向上级找，在全局window中找到了i，但此时i是3，出错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//解决方法：1.var 改成let,2.this.style.background</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4><ul>
 <li>一定要赋初始值</li>
 <li>一般常量名是用大写</li>
 <li>常量值不能修改</li>
 <li>块级作用域</li>
 <li>对于数组和对象的元素修改，不算做对常量的修改(常量指向的引用地址没有改变)</li>
+</ul>
+<h4 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h4><ul>
+<li>用同步的方法写异步代码</li>
+<li>async函数永远返回一个promise,async/await是基于Promise的语法糖<br>js是单线程编程语言(界面逻辑，网络请求，数据处理等都运行在一个进程) ：<ul>
+<li>无需考虑线程同步或资源竞争问题</li>
+<li>从源头上避免了线程之间的频繁切换，降低了线程自身的开销</li>
+</ul>
+</li>
+</ul>
+<p>js两种实现异步的方式</p>
+<ul>
+<li>回调函数 会产生如下图示的回调地狱<br><img src="/2022/12/01/es6/%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1.png"></li>
+<li>Promise应运而生(fetch是js中一个使用了Promise的API)(承诺这个请求会在未来某个时刻返回数据)<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;https://...&quot;</span>)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>)=&gt;</span> res.<span class="title function_">json</span>())</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">json</span>)=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(json))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>)=&gt;</span><span class="variable language_">console</span>.<span class="title function_">log</span>(error))<span class="comment">//如果之前任一个then出现错误，那么catch会被触发，后面的then将不会执行</span></span><br><span class="line">  .<span class="title function_">finally</span>(<span class="function">()=&gt;</span>&#123;&#125;)<span class="comment">//执行清理工作</span></span><br></pre></td></tr></table></figure>
+promise的链式调用避免了代码的层层嵌套，提升了可读性<br>async/await es8/ECMA17引入,基于promise之上的一个语法糖，让异步操作更加简洁</li>
 </ul>
 ]]></content>
       <tags>
@@ -113,14 +128,15 @@
 <li>得到函数名称</li>
 <li>定义发送到客户端的数据对象</li>
 <li>拼接出一个函数的调用   </li>
-<li>把拼接的字符串响应给客户端<span id="more"></span>
-项目解决方案：下载http-proxy-middleware 在src目录下建立setupProxy.js文件<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">app</span>) &#123;</span><br><span class="line">  app.<span class="title function_">use</span>(</span><br><span class="line">    <span class="string">&#x27;/api&#x27;</span>,<span class="comment">//路径</span></span><br><span class="line">    <span class="title function_">createProxyMiddleware</span>(&#123;</span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;https://i.maoyan.com&#x27;</span>,<span class="comment">//请求的服务器地址</span></span><br><span class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="路由架构"><a href="#路由架构" class="headerlink" title="路由架构"></a><strong>路由架构</strong></h3><img src="/2022/11/29/react-project/router_outline.png"></li>
+<li>把拼接的字符串响应给客户端</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<p>项目解决方案：下载http-proxy-middleware 在src目录下建立setupProxy.js文件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; createProxyMiddleware &#125; = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span>(<span class="params">app</span>) &#123;</span><br><span class="line">  app.<span class="title function_">use</span>(</span><br><span class="line">    <span class="string">&#x27;/api&#x27;</span>,<span class="comment">//路径</span></span><br><span class="line">    <span class="title function_">createProxyMiddleware</span>(&#123;</span><br><span class="line">      <span class="attr">target</span>: <span class="string">&#x27;https://i.maoyan.com&#x27;</span>,<span class="comment">//请求的服务器地址</span></span><br><span class="line">      <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="路由架构"><a href="#路由架构" class="headerlink" title="路由架构"></a><strong>路由架构</strong></h3><p><img src="/2022/11/29/react-project/router_outline.png"></p>
 <p><strong>接口</strong>使用json-server(已经在server端配置了CORS响应头)模拟</p>
 <ul>
 <li><p>支持get post put(替换对应id的数据) patch(局部更新对应id的数据) delete</p>
@@ -135,7 +151,16 @@
 <li>非受控组件：外部状态变化，只有在第一次受到影响，之后再也不受影响了<br>（antd中defaultSelectKeys根据路由路径变化，当重定向时只有第一次”/“会影响，但没有匹配上key因此没有按钮被选中，之后重定向到”/home”之后也不会再去匹配了 解决；改为selectKeys(default是非受控组件)</li>
 </ul>
 <h3 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a><strong>权限控制</strong></h3><p><img src="/2022/11/29/react-project/right_control.png"></p>
-<p>后台系统的复杂性</p>
+<h3 id="组件拆分"><a href="#组件拆分" class="headerlink" title="组件拆分"></a><strong>组件拆分</strong></h3><p>UserList组件展示用户信息，其中有个添加用户的表单，为了复用和结构简化，将其单独拆分为组件UserForm,通过props使得父组件给子组件传递roleList和regionList数据(下拉菜单数据，通过和后端交互获得)，难点在于收集数据，表单筐里的数据可以通过ref获取，这就需要在UserForm的Form组件中添加ref属性，但是父组件怎么拿到呢(需要在Modal中的onOk方法中使用(验证和上传))<br>解决方法：将UserForm这个普通函数式组件传入forwardRef()函数中，该函数会给函数式组件传递两个参数props和ref,把ref绑定到UserForm中的Form中，而这个ref是父组件传递过来的<br>Form中的ref就传递给父组件了，父组件就可以通过使用ref传来的数据进行验证和数据添加</p>
+<h3 id="同步异步问题"><a href="#同步异步问题" class="headerlink" title="同步异步问题"></a><strong>同步异步问题</strong></h3><p>react中状态的更新并不是同步的，有的时候需要同步时需要将</p>
+<h3 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h3><ul>
+<li>折叠菜单</li>
+<li>loding框组件，在请求的过程中显示，之前和之后不显示，请求之前和请求之后的判断：axios拦截，状态放到redux中管理</li>
+</ul>
+<p>将公共状态映射为自己的属性 </p>
+<p>redux管理的状态存在内存中，刷新页面之后状态从0开始，如何让redux持久存储在系统中？<br>*redux-persist  让redux的部分状态(自己可以指定黑名单)持久化存储在localStorage中</p>
+<p>dev-Tools 观看Redux中的状态信息</p>
+<h3 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h3><p>后台系统的复杂性</p>
 <h3 id="References"><a href="#References" class="headerlink" title="References"></a><strong>References</strong></h3><ul>
 <li><a href="https://create-react-app.dev/docs/proxying-api-requests-in-development">https://create-react-app.dev/docs/proxying-api-requests-in-development</a></li>
 </ul>
@@ -183,5 +208,24 @@
       <tags>
         <tag>git github gitlab</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Threejs</title>
+    <url>/2022/12/05/Threejs/</url>
+    <content><![CDATA[<p>Three.js是基于原生WebGL(Javascript的3D图形接口，把JavaScript和OpenGL ES 2.0结合在一起。)封装运行的三维引擎<br>三要素是：场景(Scene)、相机(Camera)、渲染器(Renderer),下面通过三要素在浏览器中创建几何体并显示</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> <span class="variable constant_">THREE</span> <span class="keyword">from</span> <span class="string">&quot;three&quot;</span></span><br><span class="line"><span class="comment">// three.js最基本的创建流程</span></span><br><span class="line"><span class="keyword">const</span> scene = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Scene</span>();</span><br><span class="line"><span class="keyword">const</span> camera = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">PerspectiveCamera</span>(<span class="number">75</span>, <span class="variable language_">window</span>.<span class="property">innerWidth</span> / <span class="variable language_">window</span>.<span class="property">innerHeight</span>, <span class="number">0.1</span>, <span class="number">1000</span>)</span><br><span class="line">camera.<span class="property">position</span>.<span class="title function_">set</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line">scene.<span class="title function_">add</span>(camera)</span><br><span class="line"><span class="keyword">const</span> cubeGeometry = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">BoxGeometry</span>()</span><br><span class="line"><span class="keyword">const</span> cubeMaterial = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">MeshBasicMaterial</span>(&#123; <span class="attr">color</span>: <span class="number">0xffff00</span> &#125;)</span><br><span class="line"><span class="comment">//根据几何体和材质创建物体</span></span><br><span class="line"><span class="keyword">const</span> cube = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">Mesh</span>(cubeGeometry,cubeMaterial)</span><br><span class="line"><span class="comment">//将几何体添加到场景中</span></span><br><span class="line">scene.<span class="title function_">add</span>(cube)</span><br><span class="line"><span class="comment">//初始化渲染器</span></span><br><span class="line"><span class="keyword">const</span> renderer = <span class="keyword">new</span> <span class="variable constant_">THREE</span>.<span class="title class_">WebGLRenderer</span>()</span><br><span class="line"><span class="comment">//设置渲染的尺寸大小</span></span><br><span class="line">renderer.<span class="title function_">setSize</span>(<span class="variable language_">window</span>.<span class="property">innerWidth</span>, <span class="variable language_">window</span>.<span class="property">innerHeight</span>)</span><br><span class="line"><span class="comment">//将webgl渲染的canvas内容添加到body</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(renderer.<span class="property">domElement</span>)</span><br><span class="line"><span class="comment">//使用渲染器，通过相机将场景渲染进来</span></span><br><span class="line">renderer.<span class="title function_">render</span>(scene,camera)</span><br></pre></td></tr></table></figure>
+<p>threejs开源项目目录结构<br><img src="/2022/12/05/Threejs/threejs.png"></p>
+<p>…后续补坑</p>
+<p>References<br><a href="https://juejin.cn/post/7020396322062598181">https://juejin.cn/post/7020396322062598181</a></p>
+]]></content>
+      <tags>
+        <tag>threejs 3d webgl</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>响应式布局</title>
+    <url>/2022/12/05/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<p>响应式布局是同一页面在不同的屏幕上有不同的布局，即只需要一套代码使页面适应不同的屏幕</p>
+]]></content>
   </entry>
 </search>
