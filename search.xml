@@ -64,7 +64,7 @@ promise的链式调用避免了代码的层层嵌套，提升了可读性<br>asy
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<p>会删除public文件夹，执行hexo g会重新生成public文件夹(即网页html),由于我的avatar放在public中的images中，执行hexo cleam之后我的logo就没了(呜呜呜)</p>
+<p>会删除public文件夹，执行hexo g会重新生成public文件夹(即网页html),由于我的avatar放在public中的images中，执行hexo clean之后我的logo就没了(呜呜呜)</p>
 ]]></content>
   </entry>
   <entry>
@@ -226,6 +226,28 @@ promise的链式调用避免了代码的层层嵌套，提升了可读性<br>asy
     <title>响应式布局</title>
     <url>/2022/12/05/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<p>响应式布局是同一页面在不同的屏幕上有不同的布局，即只需要一套代码使页面适应不同的屏幕</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>计算机图形学</title>
+    <url>/2022/12/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/</url>
+    <content><![CDATA[<p>着色不考虑其他物体的存在，只考虑自己，因此没有阴影(局部性)</p>
+<p>凹凸贴图和位移贴图</p>
+<h4 id="Blin-Phong模型"><a href="#Blin-Phong模型" class="headerlink" title="Blin-Phong模型"></a>Blin-Phong模型</h4><p>很经验的模型但是有一定的物理道理<br>所有向量均为单位向量，因为只需要夹角参数<br>Blinn-Phong对Phong的改进：使用半程向量h=bisector(v,1)和n的夹角代替R和v的夹角(反射方向计算量比较大，而半程向量很好算)<br>高光$k_d$可以定义为白色<br>环境光和l,v,n均无关，其实是一个常数，就是某一种特定的颜色(实际上不是这回事，精确计算需要全局光照的知识)(其实一个点凹下去的话环境光应该暗一些，而不是和其他点都一样)</p>
+<h4 id="shading-frequency"><a href="#shading-frequency" class="headerlink" title="shading frequency"></a>shading frequency</h4><ul>
+<li>falt shading 逐三角形</li>
+<li>Gouraud shading 逐顶点</li>
+<li>Phong 逐像素</li>
+</ul>
+<p>给定顶点法向(平均或者加权平均(和三角形面积加权)),如何插值中间的法线呢<br>*重心坐标</p>
+<p>图形管线(实时渲染管线)<br>从三位场景到最后渲染出一副二维的图的一个基本操作，集成在显卡中<br>其中顶点和像素如何着色是可编程的(顶点着色还是像素着色，以及如何着色 )</p>
+<p>shader programs</p>
+<h4 id="纹理映射"><a href="#纹理映射" class="headerlink" title="纹理映射"></a>纹理映射</h4><p>三角形的每个点对应木头纹理上面的每个点<br>定义任何一个点的属性<br>三维物体表面其实是二维的，因此可以和一张图有一一对应关系<br>物体表面一点和纹理上一点的对应关系<br>怎么把空间上的一个三角形映射到纹理上，我们不管，我们就认为已经有了这么一个映射关系，三角形上的任何一个顶点已经规定好了它在纹理上的坐标<br>需要纹理上的坐标，因此需要定义纹理上的坐标系，这个坐标系用uv来表示，都认为u在[0,1]，v也在[0,1]，方便处理，不管分辨率和长宽比<br>三角形每个顶点都对应一个uv,这就是纹理映射，怎么知道的，假设已经知道了<br>一个场景可能需要很多个纹理，像贴瓷砖一样，这就涉及到纹理之间的裂缝问题<br>纹理的无缝衔接的合成</p>
+<p>知道了三角形三个顶点对应的纹理坐标uv，如何知道三角形内部三个顶点对应的纹理坐标uv</p>
+<p>纹理定义着色时候需要的各个不同点的属性，我不希望着色的时候每个顶点以一种相同的方式来着色，然后用纹理的方式改变一些逐点的属性</p>
+<p>如何定义不同的材质或者表面，与光线如何作用，我们就会得到一种怎样的看上去的外观，光线与材质如何作用？</p>
+<p>Mipmap只能做近似的正方形的范围查询</p>
+<h4 id="利用重心坐标进行插值"><a href="#利用重心坐标进行插值" class="headerlink" title="利用重心坐标进行插值"></a>利用重心坐标进行插值</h4><p>重心坐标在投影操作下会发生变化，因此三维空间的属性建议在三维空间中做插值，然后再将值对应在二维结果上</p>
 ]]></content>
   </entry>
 </search>
