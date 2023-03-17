@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"xiaomingcom-cs.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://xiaomingcom-cs.github.io/categories/index.html">
+  <meta name="description" content="http协议是TCP协议的典型应用，是浏览器与服务器交流的主要方式，服务器会监听80端口，等待客户端连接  本blog在创建socket客户端和服务端的基础上，采用python socket和多线程构造一个简易的tinyHTTP,可以通过多线程并发支持多客户端请求，同时对客户端进行响应 1234567891011121314151617181920212223242526272829303132">
+<meta property="og:type" content="article">
+<meta property="og:title" content="httpServer">
+<meta property="og:url" content="https://xiaomingcom-cs.github.io/2023/03/17/httpServer/index.html">
 <meta property="og:site_name" content="Xiaoming&#39;s Blog">
+<meta property="og:description" content="http协议是TCP协议的典型应用，是浏览器与服务器交流的主要方式，服务器会监听80端口，等待客户端连接  本blog在创建socket客户端和服务端的基础上，采用python socket和多线程构造一个简易的tinyHTTP,可以通过多线程并发支持多客户端请求，同时对客户端进行响应 1234567891011121314151617181920212223242526272829303132">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-12-01T07:39:17.000Z">
-<meta property="article:modified_time" content="2022-12-01T07:39:31.708Z">
+<meta property="article:published_time" content="2023-03-17T11:00:58.000Z">
+<meta property="article:modified_time" content="2023-03-17T11:13:28.169Z">
 <meta property="article:author" content="Xiaoming">
+<meta property="article:tag" content="http socket">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://xiaomingcom-cs.github.io/categories/">
+<link rel="canonical" href="https://xiaomingcom-cs.github.io/2023/03/17/httpServer/">
 
 
 <script id="page-configurations">
@@ -38,13 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>分类 | Xiaoming's Blog
-</title>
+  <title>httpServer | Xiaoming's Blog</title>
   
 
 
@@ -188,51 +190,112 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="en">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://xiaomingcom-cs.github.io/2023/03/17/httpServer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wuliuqi.jpg">
+      <meta itemprop="name" content="Xiaoming">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaoming's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          httpServer
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">分类
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2023-03-17 19:00:58 / Modified: 19:13:28" itemprop="dateCreated datePublished" datetime="2023-03-17T19:00:58+08:00">2023-03-17</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>http协议是TCP协议的典型应用，是浏览器与服务器交流的主要方式，服务器会监听80端口，等待客户端连接</p>
+</blockquote>
+<p>本blog在创建socket客户端和服务端的基础上，采用python socket和多线程构造一个简易的tinyHTTP,可以通过多线程并发支持多客户端请求，同时对客户端进行响应</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 由socket服务端改造为httpServer，</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment">#处理http客户端请求</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_http_client</span>(<span class="params">c, addr</span>):</span><br><span class="line">  <span class="built_in">print</span>(addr, <span class="string">&quot;connected.&quot;</span>)</span><br><span class="line">  WEBROOT = os.path.dirname(__file__)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;WEBROOT&quot;</span>,WEBROOT)</span><br><span class="line">  <span class="keyword">with</span> c:</span><br><span class="line">    request = c.recv(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Parse HTTP headers</span></span><br><span class="line">    headers = request.split(<span class="string">b&quot;\r\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(headers)</span><br><span class="line">    file = headers[<span class="number">0</span>].split()[<span class="number">1</span>].decode()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;file&quot;</span>,file)</span><br><span class="line">    <span class="comment"># Load file content</span></span><br><span class="line">    <span class="keyword">if</span> file == <span class="string">&quot;/&quot;</span>:</span><br><span class="line">      file = <span class="string">&quot;index.html&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">with</span> <span class="built_in">open</span>(WEBROOT + file, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.read()</span><br><span class="line">      response = <span class="string">b&quot;HTTP/1.0 200 OK\r\n\r\n&quot;</span> + content</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">      response = <span class="string">b&quot;HTTP/1.0 404 NOT FOUND\r\n\r\nFile not found!&quot;</span></span><br><span class="line">    <span class="comment"># Send HTTP response</span></span><br><span class="line">    c.sendall(response)</span><br><span class="line"></span><br><span class="line"><span class="comment">#处理socket客户端请求</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_client</span>(<span class="params">c,addr</span>):</span><br><span class="line">  <span class="built_in">print</span>(addr,<span class="string">&quot;connected.&quot;</span>)</span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = c.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    c.sendall(data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">  s.bind((<span class="string">&quot;0.0.0.0&quot;</span>,<span class="number">1234</span>))</span><br><span class="line">  s.listen()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    c, addr = s.accept()</span><br><span class="line">    t = threading.Thread(target=handle_http_client, args=(c,addr))</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># socket客户端 这里未实现http客户端(直接用浏览器代替)</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">  s.connect((<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">1234</span>))</span><br><span class="line">  s.sendall(<span class="string">b&quot;Hello,Xiaoming!&quot;</span>)</span><br><span class="line">  data = s.recv(<span class="number">1024</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Received:&quot;</span>,<span class="built_in">repr</span>(data))</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/http-socket/" rel="tag"># http socket</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/14/promise/" rel="prev" title="promise">
+      <i class="fa fa-chevron-left"></i> promise
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/03/17/express/" rel="next" title="express">
+      express <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              No categories
-            </div>
-            <div class="category-all">
-              
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>

@@ -50,7 +50,7 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<p>会删除public文件夹，执行hexo g会重新生成public文件夹(即网页html),由于我的avatar放在public中的images中，执行hexo clean之后我的logo就没了(呜呜呜)</p>
+<p>会删除public文件夹，执行hexo g会重新生成public文件夹(即网页html),由于我的avatar放在public中的images中，执行hexo clean之后我的logo就没了(呜呜呜) </p>
 ]]></content>
   </entry>
   <entry>
@@ -248,6 +248,140 @@ promise的链式调用避免了代码的层层嵌套，提升了可读性<br>asy
 <p>如何定义不同的材质或者表面，与光线如何作用，我们就会得到一种怎样的看上去的外观，光线与材质如何作用？</p>
 <p>Mipmap只能做近似的正方形的范围查询</p>
 <h4 id="利用重心坐标进行插值"><a href="#利用重心坐标进行插值" class="headerlink" title="利用重心坐标进行插值"></a>利用重心坐标进行插值</h4><p>重心坐标在投影操作下会发生变化，因此三维空间的属性建议在三维空间中做插值，然后再将值对应在二维结果上</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>express</title>
+    <url>/2023/03/17/express/</url>
+    <content><![CDATA[<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4><ul>
+<li>使用mysql模块操作MySQL数据库 npm i mysql</li>
+<li>使用docker run -itd –name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql在docker中创建mysql容器</li>
+<li>使用navicat连接数据库(localhost root 123456 3306(尽量用3306端口))<ul>
+<li>出错1：ER_ACCESS_DENIED_ERROR: Access denied for user ‘root‘@’172.17.0.1’ (using password: YES) <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span>  <span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;172.17.0.1&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;172.17.0.1&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION;</span><br><span class="line">mysql<span class="operator">&gt;</span> flush privileges; </span><br><span class="line">mysql<span class="operator">&gt;</span> exit</span><br><span class="line">参考：https:<span class="operator">/</span><span class="operator">/</span>medium.com<span class="operator">/</span>tech<span class="operator">-</span>learn<span class="operator">-</span>share<span class="operator">/</span>docker<span class="operator">-</span>mysql<span class="operator">-</span>access<span class="operator">-</span>denied<span class="operator">-</span><span class="keyword">for</span><span class="operator">-</span><span class="keyword">user</span><span class="number">-172</span><span class="number">-17</span><span class="number">-0</span><span class="number">-1</span><span class="operator">-</span><span class="keyword">using</span><span class="operator">-</span>password<span class="operator">-</span>yes<span class="operator">-</span>c5eadad582d3</span><br></pre></td></tr></table></figure></li>
+<li>出错2：ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">WITH</span> mysql_native_password <span class="keyword">BY</span> <span class="string">&#x27;password&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">参考：https:<span class="operator">/</span><span class="operator">/</span>stackoverflow.com<span class="operator">/</span>questions<span class="operator">/</span><span class="number">50093144</span><span class="operator">/</span>mysql<span class="number">-8</span><span class="number">-0</span><span class="operator">-</span>client<span class="operator">-</span>does<span class="operator">-</span><span class="keyword">not</span><span class="operator">-</span>support<span class="operator">-</span>authentication<span class="operator">-</span>protocol<span class="operator">-</span>requested<span class="operator">-</span><span class="keyword">by</span><span class="operator">-</span>server</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>使用delete语句会把真正的数据从表中删除，为了保险起见，推荐使用标记删除的形式，设置status状态字段，标记该数据是否被删除(1表示删除)–&gt;转化为update</li>
+</ul>
+<h4 id="两种web开发模式"><a href="#两种web开发模式" class="headerlink" title="两种web开发模式"></a>两种web开发模式</h4><ul>
+<li>服务端渲染：服务器发送给客户端html页面，是服务器通过字符串的拼接动态生成的，因此客户端不需要使用Ajax这样的技术额外请求页面的数据</li>
+<li>前后端分离：依赖于Ajax技术的广泛使用，后端只负责提供API接口，前端使用Ajax调用接口</li>
+<li>如何选择？<ul>
+<li>企业级网站：主要功能是展示而没有复杂交互，需要良好的SEO，使用服务端渲染</li>
+<li>后台管理：交互性比较强，不需要考虑SEO，前后端分离 (可以利用vue，react提供的SSR技术解决SEO问题)  </li>
+<li>有时候为了同时兼顾首页的加载速度和前后端分离的开发效率，采用首屏服务端渲染+其他页面前后端分离开发模式<h4 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h4></li>
+</ul>
+</li>
+<li>服务端推荐采用Session认证机制 前后端分离推荐使用JWT认证机制<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4></li>
+<li>存储在用户浏览器中一段不超过4KB的字符串，不同域名下的Cookie各自独立，每当客户端发送请求时，会<strong>自动</strong>把当前域名下所有<strong>未过期</strong>的Cookie一同发送到服务器 (自动发送 域名独立 过期时限 4KB限制)</li>
+<li>客户端第一次请求服务器的时候，服务器通过响应头的形式向客户端发送一个身份认证的Cookie，客户端会自动保存到浏览器中；随后当客户端浏览器每次请求服务器时，浏览器自动将身份认证相关的Cookie通过请求头的形式发送给服务器，服务器即可验证客户端身份</li>
+<li>Cookie不具有安全性(用户可以伪造Cookie)<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4></li>
+</ul>
+<h4 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h4><h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>本质上是一个function处理函数，形参列表中必须包含next参数，next函数是实现多个中间件连续调用的关键，把流转关系转交给下一个中间件或路由(路由是最终处理环节)</p>
+<ul>
+<li>作用：多个中间件之间，共享同一份req和res，因此可以在上游中间件中统一为req和res对象添加自定义的属性或方法，供下游的中间件或路由进行使用</li>
+<li>全局生效中间件：客户端发送的任何请求到达服务器后都会触发的中间件；<ul>
+<li>方式：调用app.use(中间件函数)</li>
+</ul>
+</li>
+<li>定义多个全局中间价：使用app.use()连续定义多个全局中间件，客户端请求到达服务器之后，会按照中间件定义的先后顺序依次调用<br>docker+express搭建后端并发布</li>
+<li>局部生效中间件：不使用app.use()<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> mw1 = <span class="keyword">function</span>(<span class="params">req,res,next</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;这是中间件函数&quot;</span>)</span><br><span class="line">  <span class="title function_">next</span>()</span><br><span class="line">&#125;</span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>,[mw1,mw2],<span class="keyword">function</span>(<span class="params">req,res</span>)&#123;</span><br><span class="line">  res.<span class="title function_">send</span>(<span class="string">&#x27;Home page&#x27;</span>)</span><br><span class="line">&#125;)<span class="comment">//mw只会影响当前路由</span></span><br></pre></td></tr></table></figure></li>
+<li>注意事项<ul>
+<li>一定要在路由之前注册中间件</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>应用级别 绑定到app上</li>
+<li>路由级别 绑定到router上</li>
+<li>错误级别 必须4个形参(err,req,res,next) 必须注册在所有路由之后</li>
+<li>Express内置  express.static  .json  .urlencoded</li>
+<li>第三方</li>
+</ul>
+</li>
+</ul>
+<p>默认情况下，如果不配置解析表单数据的中间件，则req.body默认等于undefined</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>())<span class="comment">//解析raw json格式数据 否则req.body undefined</span></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123;<span class="attr">extended</span>:<span class="literal">false</span>&#125;))<span class="comment">//解析urlecoded格式数据，否则req.body为空对象</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>自定义中间件</li>
+</ul>
+<h4 id="npm与包"><a href="#npm与包" class="headerlink" title="npm与包"></a>npm与包</h4><ul>
+<li>包的语义化版本规范：大版本 功能版本 Bug修复版本</li>
+<li>npm uninsall 指定包名  开发依赖：-D/–save-dev(devDependencies/开发依赖包只用于开发，dependencies/核心依赖包开发和上线都能用到)</li>
+</ul>
+<p>references</p>
+<p><a href="http://escook.cn:8088/">http://escook.cn:8088/</a></p>
+]]></content>
+      <tags>
+        <tag>express</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>httpServer</title>
+    <url>/2023/03/17/httpServer/</url>
+    <content><![CDATA[<blockquote>
+<p>http协议是TCP协议的典型应用，是浏览器与服务器交流的主要方式，服务器会监听80端口，等待客户端连接</p>
+</blockquote>
+<p>本blog在创建socket客户端和服务端的基础上，采用python socket和多线程构造一个简易的tinyHTTP,可以通过多线程并发支持多客户端请求，同时对客户端进行响应</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 由socket服务端改造为httpServer，</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="comment">#处理http客户端请求</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_http_client</span>(<span class="params">c, addr</span>):</span><br><span class="line">  <span class="built_in">print</span>(addr, <span class="string">&quot;connected.&quot;</span>)</span><br><span class="line">  WEBROOT = os.path.dirname(__file__)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;WEBROOT&quot;</span>,WEBROOT)</span><br><span class="line">  <span class="keyword">with</span> c:</span><br><span class="line">    request = c.recv(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Parse HTTP headers</span></span><br><span class="line">    headers = request.split(<span class="string">b&quot;\r\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(headers)</span><br><span class="line">    file = headers[<span class="number">0</span>].split()[<span class="number">1</span>].decode()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;file&quot;</span>,file)</span><br><span class="line">    <span class="comment"># Load file content</span></span><br><span class="line">    <span class="keyword">if</span> file == <span class="string">&quot;/&quot;</span>:</span><br><span class="line">      file = <span class="string">&quot;index.html&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">      <span class="keyword">with</span> <span class="built_in">open</span>(WEBROOT + file, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        content = f.read()</span><br><span class="line">      response = <span class="string">b&quot;HTTP/1.0 200 OK\r\n\r\n&quot;</span> + content</span><br><span class="line">    <span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">      response = <span class="string">b&quot;HTTP/1.0 404 NOT FOUND\r\n\r\nFile not found!&quot;</span></span><br><span class="line">    <span class="comment"># Send HTTP response</span></span><br><span class="line">    c.sendall(response)</span><br><span class="line"></span><br><span class="line"><span class="comment">#处理socket客户端请求</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_client</span>(<span class="params">c,addr</span>):</span><br><span class="line">  <span class="built_in">print</span>(addr,<span class="string">&quot;connected.&quot;</span>)</span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    data = c.recv(<span class="number">1024</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> data:</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    c.sendall(data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">  s.bind((<span class="string">&quot;0.0.0.0&quot;</span>,<span class="number">1234</span>))</span><br><span class="line">  s.listen()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    c, addr = s.accept()</span><br><span class="line">    t = threading.Thread(target=handle_http_client, args=(c,addr))</span><br><span class="line">    t.start()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># socket客户端 这里未实现http客户端(直接用浏览器代替)</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET,socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">  s.connect((<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">1234</span>))</span><br><span class="line">  s.sendall(<span class="string">b&quot;Hello,Xiaoming!&quot;</span>)</span><br><span class="line">  data = s.recv(<span class="number">1024</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Received:&quot;</span>,<span class="built_in">repr</span>(data))</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>http socket</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>promise</title>
+    <url>/2023/03/14/promise/</url>
+    <content><![CDATA[<h2 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h2><ul>
+<li>fs文件操作</li>
+<li>数据库操作</li>
+<li>AJAX</li>
+<li>定时器<br>旧方案单纯回调函数形式处理</li>
+</ul>
+<h3 id="为什么要用Promise"><a href="#为什么要用Promise" class="headerlink" title="为什么要用Promise"></a>为什么要用Promise</h3><ul>
+<li>支持链式调用，解决回调地狱问题</li>
+<li>指定回调函数的方式更加灵活<ul>
+<li>旧的：必须在启动异步任务前指定</li>
+<li>promise: 启动异步任务 =&gt; 返回promise对象 =&gt; 给promise对象绑定回调函数(甚至可以在异步任务结束之后指定/多个)</li>
+</ul>
+</li>
+</ul>
+<p>针对跨域<br>http-proxy-middleware在客户端配置<br>cors在服务端配置</p>
+<h3 id="Promise的状态"><a href="#Promise的状态" class="headerlink" title="Promise的状态"></a>Promise的状态</h3><p>实例对象中的一个属性 【PromiseState】</p>
+<ul>
+<li>pending 未决定的</li>
+<li>resolved/fullfilled 成功</li>
+<li>rejected 失败</li>
+<li>Promise状态改变：只有两种，且一个promise对象只能改变一次</li>
+</ul>
+<h3 id="Promise对象的值"><a href="#Promise对象的值" class="headerlink" title="Promise对象的值"></a>Promise对象的值</h3><p>实例对象的另一个属性 【PromiseResult】<br>保存的是异步任务【成功/失败】的结果 </p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Promise.prototype.then((value)=&gt;&#123;&#125;,(reason)=&gt;&#123;&#125;)</span><br><span class="line">Promise.prototype.catch((reason)=&gt;&#123;&#125;)//是上面第二个函数对应的语法糖</span><br><span class="line">Promise.resolve();</span><br><span class="line">//如果传入的参数为非promise类型的对象，则返回结果为成功promise对象</span><br><span class="line">//如果传入参数是pr omise对象，则参数的结果决定了resolve的结果</span><br><span class="line">Promise.reject(reason);//返回一个失败的promise对象，值是传入的值(即使他是一个promise)</span><br><span class="line">Promise.all(promises) //参数:n个promise的数组 返回一个新的promise(只有所有的promise都成功才成功，只要一个失败则直接失败，成功结果是每个promise成功结果组成的一个数组，失败结果是数组中失败的那个promise对应的结果)</span><br><span class="line">Promise.race(promises) //参数:n个promise的数组 返回一个新的promise(第一个完成的promise的结果状态就是最终的结果状态)</span><br></pre></td></tr></table></figure>
+<h3 id="几个关键问题"><a href="#几个关键问题" class="headerlink" title="几个关键问题"></a>几个关键问题</h3><ol>
+<li>如何改变promise的状态</li>
+</ol>
+<ul>
+<li>resolve(value)</li>
+<li>reject(reason)</li>
+<li>throw Error抛出异常</li>
+</ul>
+<ol start="2">
+<li>一个promise指定多个成功/失败回调函数，则都会调用<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const p = new Promise((resolve,rejected)=&gt;&#123;</span><br><span class="line">  resolve(&#x27;ok&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line">p.then(value=&gt;console.log(value))</span><br><span class="line">p.then(value=&gt;alert(value))</span><br></pre></td></tr></table></figure></li>
+<li>改变promise状态和指定回调函数谁先谁后?</li>
+<li>promise.then()返回的新promise的结果状态由什么决定？</li>
+</ol>
+<p>—由then()指定的回调函数执行的结果决定<br>5. promise如何串联多个操作任务<br>—通过then的链式调用串联多个同步/异步任务<br>6. promise异常穿透<br>7. 中断promise链<br>方法：在回调函数中返回一个pending状态的promise对象(状态没有改变，后续.then方法都不能执行)</p>
+<h2 id="手写Promise"><a href="#手写Promise" class="headerlink" title="手写Promise"></a>手写Promise</h2><h2 id="async与await"><a href="#async与await" class="headerlink" title="async与await"></a>async与await</h2><ul>
+<li>async函数的返回值为promise对象，对象结果由async函数执行的返回值决定(和.then()的返回结果相同)</li>
+<li>await右侧的表达式如果是promise对象，则await返回的是promise成功的值，如果表达式是其他值，直接将此值作为await的返回值</li>
+<li>await必须写在async函数中，但async函数可以没有await;如果await的promise失败了，就会抛出异常，需要通过try…catch捕获处理</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>immutable</title>
+    <url>/2023/03/09/immutable/</url>
+    <content><![CDATA[<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>react中要求老状态是不可变对象，保证老状态随时可做diff对比去用，如果把老状态直接改了，那diff老状态和新状态就没有区别了</p>
+<h3 id="引入Immutable"><a href="#引入Immutable" class="headerlink" title="引入Immutable"></a>引入Immutable</h3><p>实现原理：持久化数据结构，使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免deepCopy把所有节点都复制一遍所带来的性能损耗，Immutable使用了结构共享，即如果对象树中一个节点发生变化，只修改这个节点和受他影响的父节点，其他节点则进行共享。</p>
 ]]></content>
   </entry>
 </search>
